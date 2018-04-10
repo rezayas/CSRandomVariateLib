@@ -8,6 +8,7 @@ namespace RandomVariateLib
     public class Bionomial : RVG
     {
         private double _probOfSuccess;
+        private double _1MinusProbOfSucess;
         private int _numOfTrials;
 
         public Bionomial(string name, int numOfTrials, double probOfSuccess)
@@ -26,6 +27,7 @@ namespace RandomVariateLib
 
             _numOfTrials = numOfTrials;
             _probOfSuccess = probOfSuccess;
+            _1MinusProbOfSucess = 1 - probOfSuccess;
         }
         public override int SampleDiscrete(RNG rnd)
         {
@@ -48,7 +50,41 @@ namespace RandomVariateLib
                 return (int) Math.Round(sample, 0);
             }
             else
-                return MathNet.Numerics.Distributions.Binomial.Sample(rnd, _probOfSuccess, _numOfTrials);
+                return Sample(rnd.NextDouble());
+        }
+
+        private int Sample(double rnd)
+        {
+            double p;
+            int x;
+            double probX;
+            double cum;
+            int rev; // 0 or 1 to specify the direction to search
+            int sample;
+
+            // based on the fact that if x is Bin(t,p) then t-X is Bin(t,1-p)
+            rev = 0;
+            p = _probOfSuccess;
+            if (_probOfSuccess > 0.5)
+            {
+                rev = 1;            // change the direction 
+                rnd = 1 - rnd;
+                p = _1MinusProbOfSucess;
+            }
+
+            // uses recursive definition of cum dist
+            x = 0;
+            probX = Math.Pow(1 - p, _numOfTrials);
+            cum = probX;
+            while (rnd > cum && x < _numOfTrials)
+            {
+                x = x + 1;
+                probX = probX * (_numOfTrials + 1 - x) * p / (x * (1 - p));
+                cum = cum + probX;
+            }
+            sample = (1 - rev) * x + rev * (_numOfTrials - x);
+
+            return sample;
         }
     }
 }

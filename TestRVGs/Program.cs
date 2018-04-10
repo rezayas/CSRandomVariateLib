@@ -12,7 +12,7 @@ namespace TestRVGs
             RNG rnd = new RNG(1);
 
             Tests.TestRND(N, rnd);
-            Tests.TestBinomial(N, rnd, 1000, .2);
+            Tests.TestBinomial(N, rnd, 1000, 1-.0002);
             Tests.TestBeta(N, rnd, 2, 5);
             Tests.TestNormal(N, rnd, 10, 2);
             Tests.TestPoisson(N, rnd, 10);

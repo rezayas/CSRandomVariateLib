@@ -37,8 +37,9 @@ namespace RandomVariateLib
             Bionomial binomial;
 
             double cum = 0;
-            //while (remainingNumberOfTrials > 0)
-            for (int i = 0; i < dimensionSize - 1; ++i)
+            int i = 0;
+            while (remainingNumberOfTrials > 0 && i < dimensionSize - 1)
+            //for (int i = 0; i < dimensionSize - 1; ++i)
             {
                 if (cum < 1)
                 {
@@ -52,6 +53,8 @@ namespace RandomVariateLib
                     arrSample[i] = 0;
 
                 if (remainingNumberOfTrials < 0) remainingNumberOfTrials = 0;
+
+                ++i;
             }
             arrSample[dimensionSize - 1] = remainingNumberOfTrials;
 
