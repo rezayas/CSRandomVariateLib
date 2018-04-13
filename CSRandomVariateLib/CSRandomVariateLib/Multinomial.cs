@@ -59,8 +59,6 @@ namespace RandomVariateLib
             arrSample[dimensionSize - 1] = remainingNumberOfTrials;
 
             return arrSample;
-
-            // return MathNet.Numerics.Distributions.Multinomial.Sample(rnd, _arrProbabilities, _numOfTrials);
         }
     }
 }

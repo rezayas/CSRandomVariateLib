@@ -5,17 +5,12 @@ namespace RandomVariateLib
 {
     public class RNG : MersenneTwister
     {
-        int _seed = 0;
-        //MersenneTwister _mt;
+        public int Seed { get; set; } = 0;
 
         public RNG(int seed):
             base(seed, true)   // thread safe
         {
-            _seed = seed;
+            Seed = seed;
         }
-
-        public int Seed
-        { get { return _seed; } }
-
     }
 }

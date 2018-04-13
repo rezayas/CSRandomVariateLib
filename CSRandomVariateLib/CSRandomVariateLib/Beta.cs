@@ -30,7 +30,7 @@ namespace RandomVariateLib
 
         public override double SampleContinuous(RNG rnd)
         {
-            double sample = MathNet.Numerics.Distributions.Beta.Sample(_alpha, _beta);
+            double sample = MathNet.Numerics.Distributions.Beta.Sample(rnd, _alpha, _beta);
             return _min + (_max - _min)*sample;
         }
 
