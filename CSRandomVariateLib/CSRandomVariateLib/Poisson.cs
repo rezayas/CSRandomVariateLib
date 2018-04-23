@@ -17,7 +17,10 @@ namespace RandomVariateLib
 
         public override int SampleDiscrete(RNG rnd)
         {
-            return MathNet.Numerics.Distributions.Poisson.Sample(rnd, _rate);
+            int v = 0;
+            if (_rate>0)
+                v = MathNet.Numerics.Distributions.Poisson.Sample(rnd, _rate);
+            return v;
         }
     }
 }
