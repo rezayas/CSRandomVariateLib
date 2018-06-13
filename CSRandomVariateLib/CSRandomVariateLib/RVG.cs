@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MathNet.Numerics.Random;
-
-namespace RandomVariateLib
+﻿namespace RandomVariateLib
 {
-    // random variate generator
+    //// random variate generator
     public class RVG
     {
         private string _name;
