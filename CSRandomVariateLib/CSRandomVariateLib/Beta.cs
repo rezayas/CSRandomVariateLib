@@ -22,7 +22,7 @@ namespace RandomVariateLib
                 return;
             }
 
-            _alpha = alpha;
+            _alpha = alpha; 
             _beta = beta;
             _min = min;
             _max = max;
@@ -31,8 +31,30 @@ namespace RandomVariateLib
         public override double SampleContinuous(RNG rnd)
         {
             double sample = MathNet.Numerics.Distributions.Beta.Sample(rnd, _alpha, _beta);
-            return _min + (_max - _min)*sample;
+            return _min + (_max - _min) * sample;
+        }
+    }
+
+    public class Beta_Interval : RVG
+    {
+        Beta _beta;
+
+        public Beta_Interval(string name, double mean, double halfWidth, double min=0, double max=1) 
+            :base(name)
+        {
+            double stDev = halfWidth / (3 * (max - min));
+            double stMean = mean / (max - min);
+            double alphaPlusBeta = stMean * (1 - stMean) / Math.Pow(stDev, 2) - 1;
+            double alpha = stMean * alphaPlusBeta;
+            double beta = alphaPlusBeta - alpha;
+
+            _beta = new Beta(name, alpha, beta, min, max);
         }
 
+        public override double SampleContinuous(RNG rnd)
+        {
+            return _beta.SampleContinuous(rnd);
+        }
     }
 }
+

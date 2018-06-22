@@ -50,6 +50,7 @@
     <Compile Include="Constant.cs" />
     <Compile Include="Discrete.cs" />
     <Compile Include="DiscreteUniform.cs" />
+    <Compile Include="Gamma.cs" />
     <Compile Include="Multinomial.cs" />
     <Compile Include="Normal.cs" />
     <Compile Include="Poisson.cs" />
