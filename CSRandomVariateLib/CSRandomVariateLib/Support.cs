@@ -8,32 +8,36 @@ namespace RandomVariateLib
     {
         Bernoulli = 1,
         Beta = 2,
-        Bionomial = 3,
-        Constant = 4,
-        Continuous = 5,
-        Discrete = 6,
-        DiscreteUniform = 7,
-        Erlang = 8,
-        Exponential = 9,
-        Gamma = 10,
-        JohnsonSB = 11,
-        JohnsonSU = 12,
-        Lognormal = 13,
-        Multinomial = 14,
-        NHPP = 15,
-        Normal = 16,
-        NormalST = 17,
-        Poisson = 18,
-        Triangular = 19,
-        Uniform = 20,
-        Weibull = 21,
+        BetaInterval = 3,
+        Bionomial = 4,
+        Constant = 5,
+        Continuous = 6,
+        Discrete = 7,
+        DiscreteUniform = 8,
+        Erlang = 9,
+        Exponential = 10,
+        Gamma = 11,
+        GammaInterval = 12,
+        JohnsonSB = 13,
+        JohnsonSU = 14,
+        Lognormal = 15,
+        Multinomial = 16,
+        NHPP = 17,
+        Normal = 18,
+        NormalST = 19,
+        Poisson = 20,
+        Triangular = 21,
+        Uniform = 22,
+        Weibull = 23,
 
-        Correlated = 22,
-        LinearCombination = 23,
-        MultipleCombination = 24,
-        Multiplicative = 25,
-        TimeDependetLinear = 26,
-        TimeDependetOscillating = 27,
+        Correlated = 24,
+        LinearCombination = 25,
+        MultipleCombination = 26,
+        Multiplicative = 27,
+        TimeDependetLinear = 28,
+        TimeDependetOscillating = 29,
+        ComorbidityDisutility = 30,
+
     }
 
     public static class SupportProcedures
@@ -54,6 +58,9 @@ namespace RandomVariateLib
                     break;
                 case "beta":
                     thisEnum = EnumRandomVariates.Beta;
+                    break;
+                case "beta interval":
+                    thisEnum = EnumRandomVariates.BetaInterval;
                     break;
                 case "bionomial":
                     thisEnum = EnumRandomVariates.Bionomial;
@@ -78,6 +85,9 @@ namespace RandomVariateLib
                     break;
                 case "gamma":
                     thisEnum = EnumRandomVariates.Gamma;
+                    break;
+                case "gamma interval":
+                    thisEnum = EnumRandomVariates.GammaInterval;
                     break;
                 case "johnsonsb":
                     thisEnum = EnumRandomVariates.JohnsonSB;
@@ -130,6 +140,9 @@ namespace RandomVariateLib
                 case "time-dependent oscillating":
                     thisEnum = EnumRandomVariates.TimeDependetOscillating;
                     break;
+                case "comorbidity disutility":
+                    thisEnum = EnumRandomVariates.ComorbidityDisutility;
+                    break;
             }
             return thisEnum;
         }
@@ -156,9 +169,12 @@ namespace RandomVariateLib
                 case EnumRandomVariates.Beta:
                     rvg = new Beta(name, par1, par2, par3, par4);
                     break;
-                //case EnumRandomVariates.Correlated:
-                //    rvg = new Correlated(name, par2, par3);
-                //    break;
+                case EnumRandomVariates.BetaInterval:
+                    rvg = new Beta_Interval(name, par1, par2, par3, par4);
+                    break;
+                case EnumRandomVariates.GammaInterval:
+                    rvg = new Gamma_Interval(name, par1, par2);
+                    break;
             }
             return rvg;
         }
