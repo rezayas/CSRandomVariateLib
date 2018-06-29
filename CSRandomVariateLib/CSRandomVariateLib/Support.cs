@@ -32,7 +32,7 @@ namespace RandomVariateLib
 
         Correlated = 24,
         LinearCombination = 25,
-        MultipleCombination = 26,
+        Product = 26,
         Multiplicative = 27,
         TimeDependetLinear = 28,
         TimeDependetOscillating = 29,
@@ -128,8 +128,8 @@ namespace RandomVariateLib
                 case "linear combination":
                     thisEnum = EnumRandomVariates.LinearCombination;
                     break;
-                case "multiple combination":
-                    thisEnum = EnumRandomVariates.MultipleCombination;
+                case "product":
+                    thisEnum = EnumRandomVariates.Product;
                     break;
                 case "multiplicative":
                     thisEnum = EnumRandomVariates.Multiplicative;
@@ -143,6 +143,9 @@ namespace RandomVariateLib
                 case "comorbidity disutility":
                     thisEnum = EnumRandomVariates.ComorbidityDisutility;
                     break;
+                default:
+                    throw new System.ArgumentException("Invalid value for parameter type.");
+                    
             }
             return thisEnum;
         }
