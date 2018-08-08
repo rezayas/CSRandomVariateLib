@@ -30,13 +30,13 @@ namespace RandomVariateLib
         Uniform = 22,
         Weibull = 23,
 
-        Correlated = 24,
-        LinearCombination = 25,
-        Product = 26,
-        Multiplicative = 27,
-        TimeDependetLinear = 28,
-        TimeDependetOscillating = 29,
-        ComorbidityDisutility = 30,
+        //Correlated = 24,
+        //LinearCombination = 25,
+        //Product = 26,
+        //Multiplicative = 27,
+        //TimeDependetLinear = 28,
+        //TimeDependetOscillating = 29,
+        //ComorbidityDisutility = 30,
 
     }
 
@@ -46,7 +46,6 @@ namespace RandomVariateLib
         /// <summary>
         /// Convert the name of a distribution to enum
         /// </summary>
-        /// <param name="RVGName">Uniform; Normal.</param>
         public static EnumRandomVariates ConvertToEnumRVG(string RVGName)
         {
             EnumRandomVariates thisEnum = EnumRandomVariates.Constant;
@@ -121,28 +120,7 @@ namespace RandomVariateLib
                     break;
                 case "weibull":
                     thisEnum = EnumRandomVariates.Weibull;
-                    break;
-                case "correlated":
-                    thisEnum = EnumRandomVariates.Correlated;
-                    break;
-                case "linear combination":
-                    thisEnum = EnumRandomVariates.LinearCombination;
-                    break;
-                case "product":
-                    thisEnum = EnumRandomVariates.Product;
-                    break;
-                case "multiplicative":
-                    thisEnum = EnumRandomVariates.Multiplicative;
-                    break;
-                case "time-dependent linear":
-                    thisEnum = EnumRandomVariates.TimeDependetLinear;
-                    break;
-                case "time-dependent oscillating":
-                    thisEnum = EnumRandomVariates.TimeDependetOscillating;
-                    break;
-                case "comorbidity disutility":
-                    thisEnum = EnumRandomVariates.ComorbidityDisutility;
-                    break;
+                    break;                
                 default:
                     throw new System.ArgumentException("Invalid value for parameter type.");
                     
