@@ -35,6 +35,9 @@ namespace RandomVariateLib
             if (_probOfSuccess == 0 || _numOfTrials == 0)
                 return 0;
 
+            if (_probOfSuccess == 1)
+                return _numOfTrials;
+
             double mean = _numOfTrials * _probOfSuccess;
             double st_dev = Math.Sqrt(mean * (1 - _probOfSuccess));
 
