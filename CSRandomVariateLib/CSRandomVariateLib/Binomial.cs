@@ -29,7 +29,7 @@ namespace RandomVariateLib
             _probOfSuccess = probOfSuccess;
             _1MinusProbOfSucess = 1 - probOfSuccess;
         }
-        public override int SampleDiscrete(RNG rnd)
+        public override int SampleDiscrete(RNG rng)
         {
 
             if (_probOfSuccess == 0 || _numOfTrials == 0)
@@ -45,7 +45,7 @@ namespace RandomVariateLib
             if (mean - 3*st_dev > 0 && mean + 3 * st_dev < _numOfTrials)
             {
                 Normal normal = new Normal("Approximating normal", mean, st_dev);
-                double sample = normal.SampleContinuous(rnd);
+                double sample = normal.SampleContinuous(rng);
 
                 if (sample < 0) sample = 0;
                 if (sample > _numOfTrials) sample = _numOfTrials;
@@ -53,7 +53,7 @@ namespace RandomVariateLib
                 return (int) Math.Round(sample, 0);
             }
             else
-                return Sample(rnd.NextDouble());
+                return Sample(rng.NextDouble());
         }
 
         private int Sample(double rnd)

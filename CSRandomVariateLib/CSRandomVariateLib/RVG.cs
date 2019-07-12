@@ -10,19 +10,19 @@
         {
             _name = name;
         }
-        public virtual double SampleContinuous(RNG rnd)
+        public virtual double SampleContinuous(RNG rng)
         {
             return 0;
         }
-        public virtual int SampleDiscrete(RNG rnd)
+        public virtual int SampleDiscrete(RNG rng)
         {
             return 0;
         }
-        public virtual double[] ArrSampleContinuous(RNG rnd)
+        public virtual double[] ArrSampleContinuous(RNG rng)
         {
             return null;
         }
-        public virtual int[] ArrSampleDiscrete(RNG rnd)
+        public virtual int[] ArrSampleDiscrete(RNG rng)
         {
             return null;
         }

@@ -29,34 +29,42 @@ namespace RandomVariateLib
             _arrProbabilities = arrProbabilities;
         }
 
-        public override int[] ArrSampleDiscrete(RNG rnd)
+        public override int[] ArrSampleDiscrete(RNG rng)
         {
-            int dimensionSize = _arrProbabilities.Length;
-            int[] arrSample = new int[dimensionSize]; // store the random samples here
+            int nOutcomes = _arrProbabilities.Length;
+            int[] arrSample = new int[nOutcomes]; // store the random samples here
             int remainingNumberOfTrials = _numOfTrials;
             Bionomial binomial;
 
             double cum = 0;
             int i = 0;
-            while (remainingNumberOfTrials > 0 && i < dimensionSize - 1)
+            int nRndUsed = 0;
+            while (remainingNumberOfTrials > 0 && i < nOutcomes - 1)
             //for (int i = 0; i < dimensionSize - 1; ++i)
             {
                 if (cum < 1)
                 {
                     binomial = new Bionomial("temp", remainingNumberOfTrials, Math.Min(_arrProbabilities[i] / (1 - cum), 1));
-                    arrSample[i] = binomial.SampleDiscrete(rnd);
+                    arrSample[i] = binomial.SampleDiscrete(rng);
+                    ++nRndUsed;
 
-                    cum += _arrProbabilities[i];                    
+                    cum += _arrProbabilities[i];
                     remainingNumberOfTrials -= arrSample[i];
                 }
                 else
+                {
                     arrSample[i] = 0;
+                }
 
                 if (remainingNumberOfTrials < 0) remainingNumberOfTrials = 0;
 
                 ++i;
             }
-            arrSample[dimensionSize - 1] = remainingNumberOfTrials;
+            arrSample[nOutcomes - 1] = remainingNumberOfTrials;
+
+            // make sure to use as many random numbers as the number of outcomes
+            if (nRndUsed < nOutcomes)
+                rng.Advance(nOutcomes - nRndUsed);
 
             return arrSample;
         }
