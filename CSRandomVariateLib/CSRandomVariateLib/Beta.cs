@@ -13,13 +13,11 @@ namespace RandomVariateLib
         {
             if (alpha <= 0)
             {
-                Console.Write("Alpha must be greater than 0 for a Beta distribution.");
-                return;
+                throw new System.ArgumentException("Alpha must be greater than 0 for a Beta distribution.");
             }
             if (beta <= 0)
             {
-                Console.Write("Beta must be greater than 0 for a Beta distribution.");
-                return;
+                throw new System.ArgumentException("Beta must be greater than 0 for a Beta distribution.");
             }
 
             _alpha = alpha; 
