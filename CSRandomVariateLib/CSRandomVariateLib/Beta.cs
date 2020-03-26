@@ -40,8 +40,11 @@ namespace RandomVariateLib
         public Beta_Interval(string name, double mean, double halfWidth, double min=0, double max=1) 
             :base(name)
         {
-            double stDev = halfWidth / (3 * (max - min));
-            double stMean = mean / (max - min);
+            double critical = MathNet.Numerics.Distributions.Normal.InvCDF(0, 1, 1 - 0.05 / 2);
+            double stDev = halfWidth / (critical * (max - min));
+            Console.WriteLine(stDev);
+            double stMean = (mean - min) / (max - min);
+            Console.WriteLine(stMean);
             double alphaPlusBeta = stMean * (1 - stMean) / Math.Pow(stDev, 2) - 1;
             double alpha = stMean * alphaPlusBeta;
             double beta = alphaPlusBeta - alpha;

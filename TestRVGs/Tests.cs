@@ -62,7 +62,7 @@ namespace TestRVGs
             double[] samples = SampleContinuous(betaIntDis, rnd, N);
             Console.WriteLine("\nTesting Beta Interval:");
             Console.WriteLine("  E[X] = " + mean + " | sample mean = " + samples.Average());
-            Console.WriteLine("  SD[X] = " + hw/3 + " | sample st. dev. = " + Statistics.StandardDeviation(samples));
+            Console.WriteLine("  SD[X] = " + hw/1.96 + " | sample st. dev. = " + Statistics.StandardDeviation(samples));
         }
 
         // Test Gamma distribution 
