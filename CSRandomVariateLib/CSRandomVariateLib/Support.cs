@@ -8,7 +8,7 @@ namespace RandomVariateLib
     {
         Bernoulli = 1,
         Beta = 2,
-        BetaInterval = 3,
+        BetaMeanStDev = 3,
         Bionomial = 4,
         Constant = 5,
         Continuous = 6,
@@ -58,8 +58,8 @@ namespace RandomVariateLib
                 case "beta":
                     thisEnum = EnumRandomVariates.Beta;
                     break;
-                case "beta interval":
-                    thisEnum = EnumRandomVariates.BetaInterval;
+                case "beta mean stdev":
+                    thisEnum = EnumRandomVariates.BetaMeanStDev;
                     break;
                 case "bionomial":
                     thisEnum = EnumRandomVariates.Bionomial;
@@ -150,7 +150,7 @@ namespace RandomVariateLib
                 case EnumRandomVariates.Beta:
                     rvg = new Beta(name, par1, par2, par3, par4);
                     break;
-                case EnumRandomVariates.BetaInterval:
+                case EnumRandomVariates.BetaMeanStDev:
                     rvg = new Beta_MeanSD(name, par1, par2, par3, par4);
                     break;
                 case EnumRandomVariates.GammaInterval:
