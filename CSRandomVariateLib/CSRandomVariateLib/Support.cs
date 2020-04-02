@@ -151,7 +151,7 @@ namespace RandomVariateLib
                     rvg = new Beta(name, par1, par2, par3, par4);
                     break;
                 case EnumRandomVariates.BetaInterval:
-                    rvg = new Beta_Interval(name, par1, par2, par3, par4);
+                    rvg = new Beta_MeanSD(name, par1, par2, par3, par4);
                     break;
                 case EnumRandomVariates.GammaInterval:
                     rvg = new Gamma_Interval(name, par1, par2);

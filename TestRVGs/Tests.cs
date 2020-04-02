@@ -54,15 +54,15 @@ namespace TestRVGs
             Console.WriteLine("  SD[X] = " + Math.Sqrt(alpha*beta/(alpha+beta+1)/Math.Pow(alpha+beta,2)) + " | sample st. dev. = " + Statistics.StandardDeviation(samples));
         }
 
-        // Test Beta_Interval distribution 
-        public static void TestBetaInterval(int N, RNG rnd, double mean, double hw, double min, double max)
+        // Test Beta_MeanStDev distribution 
+        public static void TestBetaMeanStDev(int N, RNG rnd, double mean, double stDev, double min, double max)
         {
-            Beta_Interval betaIntDis = new Beta_Interval("Beta Interval", mean, hw, min, max);
+            Beta_MeanSD betaMeanStDev = new Beta_MeanSD("Beta with Mean and StDev", mean, stDev, min, max);
 
-            double[] samples = SampleContinuous(betaIntDis, rnd, N);
-            Console.WriteLine("\nTesting Beta Interval:");
+            double[] samples = SampleContinuous(betaMeanStDev, rnd, N);
+            Console.WriteLine("\nTesting Beta with Mean and StDev:");
             Console.WriteLine("  E[X] = " + mean + " | sample mean = " + samples.Average());
-            Console.WriteLine("  SD[X] = " + hw/1.96 + " | sample st. dev. = " + Statistics.StandardDeviation(samples));
+            Console.WriteLine("  SD[X] = " + stDev + " | sample st. dev. = " + Statistics.StandardDeviation(samples));
         }
 
         // Test Gamma distribution 

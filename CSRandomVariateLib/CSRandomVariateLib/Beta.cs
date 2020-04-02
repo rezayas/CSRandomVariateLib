@@ -33,18 +33,18 @@ namespace RandomVariateLib
         }
     }
 
-    public class Beta_Interval : RVG
+    public class Beta_MeanSD : RVG
     {
         Beta _beta;
 
-        public Beta_Interval(string name, double mean, double halfWidth, double min=0, double max=1) 
+        public Beta_MeanSD(string name, double mean, double stDev, double min=0, double max=1) 
             :base(name)
         {
-            double critical = MathNet.Numerics.Distributions.Normal.InvCDF(0, 1, 1 - 0.05 / 2);
-            double stDev = halfWidth / (critical * (max - min));
-            double stMean = (mean - min) / (max - min);
-            double alphaPlusBeta = stMean * (1 - stMean) / Math.Pow(stDev, 2) - 1;
-            double alpha = stMean * alphaPlusBeta;
+            // double critical = MathNet.Numerics.Distributions.Normal.InvCDF(0, 1, 1 - 0.05 / 2);
+            double standardStDev = stDev / (max - min);
+            double standardMean = (mean - min) / (max - min);
+            double alphaPlusBeta = standardMean * (1 - standardMean) / Math.Pow(standardStDev, 2) - 1;
+            double alpha = standardMean * alphaPlusBeta;
             double beta = alphaPlusBeta - alpha;
 
             _beta = new Beta(name, alpha, beta, min, max);
